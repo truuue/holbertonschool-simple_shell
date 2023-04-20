@@ -23,12 +23,16 @@ int main(void)
 			exit(EXIT_FAILURE);
 		} else if (pid == 0) {
 			count = 0;
+
 			token = strtok(line, " \n");
-			while (token != NULL && count < 1024) {
+			while (token != NULL && count < 1024)
+			{
 				argv[count++] = token;
 				token = strtok(NULL, " \n");
 			}
+
 			argv[count] = NULL;
+
 			execvp(argv[0], argv);
 			perror("execvp");
 			exit(EXIT_FAILURE);
@@ -36,7 +40,7 @@ int main(void)
 			wait(&status);
 		}
 	}
+
 	free(line);
 	return 0;
 }
-
