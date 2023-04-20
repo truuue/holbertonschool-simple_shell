@@ -22,6 +22,7 @@ int main(void)
 		{
 			count = 0;
 
+			memset(argv, 0, sizeof(argv));
 			token = strtok(line, " \n");
 			while (token != NULL)
 			{
