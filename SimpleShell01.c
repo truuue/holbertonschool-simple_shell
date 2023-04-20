@@ -34,7 +34,7 @@ int main(void)
 		{
 			wait(&status);
 		}
-		free(line);
 	}
+	free(line);
 	return(0);
 }
