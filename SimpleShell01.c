@@ -10,7 +10,7 @@ int main(void)
 {
         size_t len = 0;
         ssize_t nread;
-        char *line = (char *) malloc(1024 * sizeof(char));
+        char *line = NULL;
         char *argv[1024];
         int count = 0, pid = 0, status;
         char *token;
@@ -38,3 +38,4 @@ int main(void)
         free(line);
         return(0);
 }
+
