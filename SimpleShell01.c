@@ -29,19 +29,21 @@ int main(void)
 				count++;
 				token = strtok(NULL, " \n");
 			}
-			argv[count] = NULL;
-
-			if(argv[0] != NULL)
-			{
-				execve(argv[0], argv, NULL);
-				perror("execve");
-				exit(EXIT_FAILURE);
+            
+            int i, spaces = 1;
+			for (i = 0; i < strlen(argv[0]); i++)
+            {
+				if (argv[0][i] != ' ')
+                {
+					spaces = 0;
+					break;
+				}
 			}
-			else
-			{
-				fprintf(stderr, "Erreur : commande vide\n");
-				exit(EXIT_FAILURE);
+			if(spaces)
+            {
+				exit(0);
 			}
+			execve(argv[0], argv, NULL);
 		}
 		else
 		{
@@ -49,6 +51,6 @@ int main(void)
 		}
 	}
 	free(line);
-	line = NULL;
+    line = NULL;
 	return(0);
 }
