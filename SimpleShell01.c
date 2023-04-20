@@ -14,7 +14,8 @@ int main(void)
         char *argv[1024];
         int count = 0, pid = 0, status;
         char *token;
-
+	
+	printf("$ ");
         while ((nread = getline(&line, &len, stdin)) != -1)
         {
                 pid = fork();
