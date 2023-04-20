@@ -29,12 +29,12 @@ int main(void)
 				count++;
 				token = strtok(NULL, " \n");
 			}
-			argv[count] = NULL; // Marqueur de fin de tableau pour execve
+			argv[count] = NULL;
 
-			if(argv[0] != NULL) // Vérification que le pointeur n'est pas nul
+			if(argv[0] != NULL)
 			{
 				execve(argv[0], argv, NULL);
-				perror("execve"); // En cas d'erreur dans execve
+				perror("execve");
 				exit(EXIT_FAILURE);
 			}
 			else
