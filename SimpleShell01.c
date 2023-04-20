@@ -18,7 +18,7 @@ int main(void)
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		pid = fork();
-		if(pid == 0)
+		if (pid == 0)
 		{
 			count = 0;
 
@@ -35,7 +35,11 @@ int main(void)
 		{
 			wait(&status);
 		}
-		free(line);
+		if (line != NULL)
+		{
+			free(line);
+			line = NULL;
+		}
 	}
-	return(0);
+	return (0);
 }
