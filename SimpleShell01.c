@@ -12,7 +12,7 @@ int main(void)
 	ssize_t nread;
 	char *line = NULL;
 	char *argv[1024];
-	int count = 0, pid = 0, status;
+	int count = 0, pid = 0, status, i, spaces = 1;
 	char *token;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
@@ -29,18 +29,17 @@ int main(void)
 				count++;
 				token = strtok(NULL, " \n");
 			}
-            
-            int i, spaces = 1;
+
 			for (i = 0; i < strlen(argv[0]); i++)
-            {
+			{
 				if (argv[0][i] != ' ')
-                {
+				{
 					spaces = 0;
 					break;
 				}
 			}
 			if(spaces)
-            {
+			{
 				exit(0);
 			}
 			execve(argv[0], argv, NULL);
@@ -51,6 +50,6 @@ int main(void)
 		}
 	}
 	free(line);
-    line = NULL;
+	line = NULL;
 	return(0);
 }
