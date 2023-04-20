@@ -8,34 +8,33 @@
 
 int main(void)
 {
-	size_t len = 0;
-	ssize_t nread;
-	char *line = NULL;
-	char *argv[1024];
-	int count = 0, pid = 0, status;
-	char *token;
+        size_t len = 0;
+        ssize_t nread;
+        char *line = (char *) malloc(1024 * sizeof(char));
+        char *argv[1024];
+        int count = 0, pid = 0, status;
+        char *token;
 
-	while ((nread = getline(&line, &len, stdin)) != -1)
-	{
-		pid = fork();
-		if(pid == 0)
-		{
-			count = 0;
+        while ((nread = getline(&line, &len, stdin)) != -1)
+        {
+                pid = fork();
+                if(pid == 0)
+                {
+                        count = 0;
 
-			memset(argv, 0, sizeof(argv));
-			token = strtok(line, " \n");
-			while (token != NULL)
-			{
-				argv[count++] = token;
-				token = strtok(NULL, " \n");
-			}
-			execve(argv[0], argv, NULL);
-		}
-		else
-		{
-			wait(&status);
-		}
-	}
-	free(line);
-	return(0);
+                        token = strtok(line, " \n");
+                        while (token != NULL)
+                        {
+                                argv[count++] = token;
+                                token = strtok(NULL, " \n");
+                        }
+                        execve(argv[0], argv, NULL);
+                }
+                else
+                {
+                        wait(&status);
+                }
+        }
+        free(line);
+        return(0);
 }
