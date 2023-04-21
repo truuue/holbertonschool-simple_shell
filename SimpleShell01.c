@@ -36,8 +36,8 @@ int main(void)
 
 			argv[count] = NULL;
 
-			execvp(argv[0], argv);
-			perror("execvp");
+			execve(argv[0], argv, NULL);
+			perror("execve");
 			exit(EXIT_FAILURE);
 		} else {
 			wait(&status);
