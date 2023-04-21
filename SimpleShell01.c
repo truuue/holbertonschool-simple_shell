@@ -23,6 +23,8 @@ int main(void)
 			count = 0;
 
 			token = strtok(line, " \n");
+			if(token == NULL)
+				continue;
 			while (token != NULL)
 			{
 				argv[count++] = token;
