@@ -12,38 +12,32 @@ int main(void)
 	ssize_t nread;
 	char *line = NULL;
 	char *argv[1024];
-	int count, pid, status;
+	int count = 0, pid = 0, status;
 	char *token;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		pid = fork();
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
+		if(pid == 0)
 		{
 			count = 0;
 
 			token = strtok(line, " \n");
-			while (token != NULL && count < 1024)
+			if(token == NULL)
+				continue;
+			while (token != NULL)
 			{
 				argv[count++] = token;
 				token = strtok(NULL, " \n");
 			}
-
-			argv[count] = NULL;
-
-			execve(argv[0], argv, NULL);
-			perror("execve");
-			exit(EXIT_FAILURE);
-		} else {
+			execve("/bin/ls", argv, NULL);
+		}
+		else
+		{
 			wait(&status);
 		}
 	}
-
 	free(line);
-	return 0;
+	return(0);
 }
+
