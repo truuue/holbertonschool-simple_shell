@@ -17,22 +17,21 @@ int main(int ac, char *av[1024], char *envp[])
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
-		count = 0;
-		token = strtok(line, " \n");
-		if (token == NULL)
-			continue;
-		while (token != NULL)
-		{
-			av[count] = token;
-			count++;
-			token = strtok(NULL, " \n");
-		}
-		av[count] = NULL;
-
-		sprintf(command, "/bin/%s", av[0]);
 		pid = fork();
 		if (pid == 0)
 		{
+			count = 0;
+			token = strtok(line, " \n");
+			if (token == NULL)
+				continue;
+			while (token != NULL)
+			{
+				av[count] = token;
+				count++;
+				token = strtok(NULL, " \n");
+			}
+			av[count] = NULL;
+			sprintf(command, "/bin/%s", av[0]);
 			execve(command, av, envp);
 			fprintf(stderr, "Erreur: commande introuvable\n");
 			exit(1);
