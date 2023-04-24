@@ -12,6 +12,7 @@ int main(int ac, char *av[1024], char *envp[])
 	ssize_t nread;
 	char *line = NULL;
 	int count = 0, pid = 0, status;
+	(void) ac;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
@@ -29,7 +30,7 @@ int main(int ac, char *av[1024], char *envp[])
 		pid = fork();
 		if (pid == 0)
 		{
-			execve(av[0], av, NULL);
+			execve(av[0], av, envp);
 			fprintf(stderr, "Erreur: commande introuvable\n");
 			exit(1);
 		}
