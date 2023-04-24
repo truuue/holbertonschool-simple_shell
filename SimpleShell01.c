@@ -6,31 +6,31 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int main(int ac, char *av[1024], char *envp[])
+int main(int ac, char *av[], char *envp[])
 {
+	int MAX_ARGS = 1024;
 	size_t len = 0;
 	ssize_t nread;
-	char *line = NULL, *token;
+	char *line = NULL;
+	char *argv[MAX_ARGS];
 	int count = 0, pid = 0, status;
-	(void) ac;
-
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		count = 0;
-		token = strtok(line, " \n");
+		char *token = strtok(line, " \n");
 		if (token == NULL)
 			continue;
 		while (token != NULL)
 		{
-			av[count] = token;
+			argv[count] = token;
 			count++;
 			token = strtok(NULL, " \n");
 		}
-		av[count] = NULL;
+		argv[count] = NULL;
 		pid = fork();
 		if (pid == 0)
 		{
-			execve(av[0], av, envp);
+			execvp(argv[0], argv);
 			fprintf(stderr, "Erreur: commande introuvable\n");
 			exit(1);
 		}
