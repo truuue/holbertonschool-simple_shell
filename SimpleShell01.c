@@ -6,32 +6,31 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int main(int ac, char *av[1024], char *envp[])
+int main(void)
 {
 	size_t len = 0;
 	ssize_t nread;
 	char *line = NULL;
+	char *argv[1024];
 	int count = 0, pid = 0, status;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		count = 0;
 		char *token = strtok(line, " \n");
-		if (token == NULL)
+		if(token == NULL)
 			continue;
 		while (token != NULL)
 		{
-			av[count] = token;
-			count++;
+			argv[count++] = token;
 			token = strtok(NULL, " \n");
 		}
-		av[count] = NULL;
+		argv[count] = NULL;
 		pid = fork();
 		if (pid == 0)
 		{
-			execve(av[0], av, NULL);
+			execve(argv[0], argv, NULL);
 			fprintf(stderr, "Erreur: commande introuvable\n");
-			exit(1);
 		}
 		else
 		{
@@ -39,5 +38,5 @@ int main(int ac, char *av[1024], char *envp[])
 		}
 	}
 	free(line);
-	return 0;
+	return(0);
 }
