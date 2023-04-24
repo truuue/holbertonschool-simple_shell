@@ -10,14 +10,14 @@ int main(int ac, char *av[1024], char *envp[])
 {
 	size_t len = 0;
 	ssize_t nread;
-	char *line = NULL;
+	char *line = NULL, *token;
 	int count = 0, pid = 0, status;
 	(void) ac;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		count = 0;
-		char *token = strtok(line, " \n");
+		token = strtok(line, " \n");
 		if (token == NULL)
 			continue;
 		while (token != NULL)
