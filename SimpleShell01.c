@@ -6,17 +6,14 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int main(int ac, char *av[], char *envp[])
+int main(int ac, char *av[1024], char *envp[])
 {
 	size_t len = 0;
 	ssize_t nread;
-	char *line = NULL;
-	char *argv[1024];
+	char *line = NULL, *token;
+	char command[1024];
 	int count = 0, pid = 0, status;
-	char *token;
-	(void)ac;
-	(void)envp;
-	(void)av;
+	(void) ac;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
@@ -26,15 +23,17 @@ int main(int ac, char *av[], char *envp[])
 			continue;
 		while (token != NULL)
 		{
-			argv[count] = token;
+			av[count] = token;
 			count++;
 			token = strtok(NULL, " \n");
 		}
-		argv[count] = NULL;
+		av[count] = NULL;
+
+		sprintf(command, "/bin/%s", av[0]);
 		pid = fork();
 		if (pid == 0)
 		{
-			execvp(argv[0], argv);
+			execve(command, av, envp);
 			fprintf(stderr, "Erreur: commande introuvable\n");
 			exit(1);
 		}
@@ -46,4 +45,3 @@ int main(int ac, char *av[], char *envp[])
 	free(line);
 	return 0;
 }
-
