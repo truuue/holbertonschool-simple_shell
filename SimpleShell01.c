@@ -12,12 +12,13 @@ int main(void)
 	ssize_t nread;
 	char *line = NULL;
 	char *argv[1024];
+	char *token;
 	int count = 0, pid = 0, status;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		count = 0;
-		char *token = strtok(line, " \n");
+		token = strtok(line, " \n");
 		if(token == NULL)
 			continue;
 		while (token != NULL)
