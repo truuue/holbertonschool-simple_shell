@@ -8,16 +8,20 @@
 
 int main(int ac, char *av[], char *envp[])
 {
-	int MAX_ARGS = 1024;
 	size_t len = 0;
 	ssize_t nread;
 	char *line = NULL;
-	char *argv[MAX_ARGS];
+	char *argv[1024];
 	int count = 0, pid = 0, status;
+	char *token;
+	(void)ac;
+	(void)envp;
+	(void)av;
+
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		count = 0;
-		char *token = strtok(line, " \n");
+		token = strtok(line, " \n");
 		if (token == NULL)
 			continue;
 		while (token != NULL)
@@ -42,3 +46,11 @@ int main(int ac, char *av[], char *envp[])
 	free(line);
 	return 0;
 }
+
+
+
+
+
+
+
+
