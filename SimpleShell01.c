@@ -6,11 +6,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#define MAX_ARGS 1024
 
-int main(int ac, char *av[1024])
+int main(int ac, char *av[])
 {
 	size_t len = 0;
-
 	ssize_t nread;
 	char *line = NULL, *token, command[1024];
 	char *path = NULL;
@@ -36,11 +36,14 @@ int main(int ac, char *av[1024])
 			continue;
 		while (token != NULL)
 		{
-			av[count] = token;
-			count++;
+			if (count < MAX_ARGS - 1) {
+				av[count] = token;
+				count++;
+			}
 			token = strtok(NULL, " \n");
 		}
 		av[count] = NULL;
+
 		pid = fork();
 		if (pid == 0)
 		{
@@ -56,6 +59,7 @@ int main(int ac, char *av[1024])
 			wait(&status);
 		}
 	}
+
 	free(line);
 	return 0;
 }
