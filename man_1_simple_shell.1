@@ -1,0 +1,50 @@
+.TH MAN PAGE
+.SH NOM
+Simple shell - Creation simple shell
+.SH SYNOPSIS
+.B #include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+int main(int ac, char *av[1024], char *envp[]);
+
+.SH DESCRIPTION
+The shell program is a basic command interpreter that allows the user to enter system commands (ls, pwd, echo, cat) from the command line and execute them using the execve() function.
+The shell program performs the following operations:
+
+Reads commands entered by the user from the standard input.
+Executes each command in a child process using the fork() function.
+Uses the execve() function to execute the command in the child process.
+Waits for the command to finish executing in the child process using the waitpid() function.
+Repeats steps 1 to 4 until the user enters the "exit" command to quit the program.
+
+.SH COMMANDS
+The shell program supports the following commands:
+.TP
+.B ls
+Lists the contents of the current directory.
+.TP
+.B pwd
+Displays the absolute path of the current directory.
+.TP
+.B echo
+Displays the arguments passed to the command.
+.TP
+.B cat
+Displays the contents of the file specified as an argument.
+
+.SH ERRORS
+The shell program can display the following error messages:
+.TP
+.B "Error: command not found"
+This message is displayed if the command entered by the user is not supported by the shell program.
+.TP
+.B "Error: failed to fork process"
+This message is displayed if the fork() function fails.
+
+.SH DATE
+"27 avril 2023"
