@@ -6,13 +6,13 @@ This is a basic shell program that executes commands by forking and calling exec
 
 To compile the program, run the following command in the terminal :
 
-`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 simple_shell.c -o shell`
+>gcc -Wall -Werror -Wextra -pedantic -std=gnu89 simple_shell.c -o shell
 
 ### Usage
 
 To start the shell, run the compiled program :
 
-`./shell` 
+>./shell
 
 The shell will display a prompt and wait for user input.
 Enter a command and press Enter to execute it.
@@ -28,11 +28,9 @@ This shell supports the following basic commands :
 
 ### Exit the Shell
 
-To exit the shell, type `ctrl + D`.
+To exit the shell, type >ctrl + D.
 
 ### Error Handling
 
 The shell will display an error message if the entered command is not found.
 If forking fails, an error message will be displayed and the shell will exit.
-
-![Logo Holberton School](https://github.com/truuue/holbertonschool-printf/blob/master/Holbertonschool-logo.png)
