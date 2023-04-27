@@ -34,3 +34,5 @@ To exit the shell, type `ctrl + D`.
 
 The shell will display an error message if the entered command is not found.
 If forking fails, an error message will be displayed and the shell will exit.
+
+![Logo Holberton School](https://github.com/truuue/holbertonschool-printf/blob/master/Holbertonschool-logo.png)
