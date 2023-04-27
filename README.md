@@ -1,3 +1,5 @@
+![Logo Holberton School](https://github.com/truuue/holbertonschool-simple_shell/blob/master/shell.png)
+
 #   Simple Shell
 
 This is a basic shell program that executes commands by forking and calling execve. It accepts input from standard input and parses it into arguments to be passed to execve.
