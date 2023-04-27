@@ -85,5 +85,4 @@ If forking fails, an error message will be displayed and the shell will exit.
                      |    End Program    |
                      +-------------------+
 
-###### Date
-###### 04/27/2023
+###### Date : 04/27/2023
