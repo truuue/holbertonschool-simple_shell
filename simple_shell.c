@@ -20,6 +20,11 @@ int main(int ac, char *av[1024], char *envp[])
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
 		ac = 0;
+		if (strcmp(line, "exit\n") == 0)
+		{
+			free(line);
+			exit(EXIT_SUCCESS);
+		}
 		pid = fork();
 		if (pid == 0)
 		{
