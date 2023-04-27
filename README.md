@@ -51,3 +51,36 @@ To exit the shell, type `ctrl + D`.
 
 The shell will display an error message if the entered command is not found.
 If forking fails, an error message will be displayed and the shell will exit.
+
+### Flowchart
+
+                    +--------------------+
+                    |   Start Program    |
+                    +--------------------+
+                              |
+                              V
+                    +--------------------+
+                    |  Read Input Line   |
+                    +--------------------+
+                              |
+                              V
+                   +-----------------------+
+                   | Create Child Process  |
+                   +-----------------------+
+                              |
+                              V
+                  +-------------------------+
+                  | Child Process Executes  |
+                  |     Command/Program     |
+                  +-------------------------+
+                              |
+                              V
+                  +-------------------------+
+                  |  Parent Process Waits   |
+                  |   for Child to Finish   |
+                  +-------------------------+
+                              |
+                              V
+                     +-------------------+
+                     |    End Program    |
+                     +-------------------+
