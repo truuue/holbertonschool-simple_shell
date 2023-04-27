@@ -45,7 +45,7 @@ AUTHORS  main.h  man_1_simple_shell.1  README.md  shell  simple_shell.c
 
 ### Exit the Shell
 
-To exit the shell, type `ctrl + D`.
+To exit the shell, type `ctrl + D` or `exit` and press enter.
 
 ### Error Handling
 
