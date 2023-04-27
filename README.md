@@ -1,4 +1,4 @@
-![Logo Holberton School](https://github.com/truuue/holbertonschool-simple_shell/blob/master/shell.png)
+![Logo Holberton School](https://github.com/truuue/holbertonschool-simple_shell/blob/master/shell.jpeg)
 
 #   Simple Shell
 
