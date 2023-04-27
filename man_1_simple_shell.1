@@ -20,7 +20,7 @@ Reads commands entered by the user from the standard input.
 Executes each command in a child process using the fork() function.
 Uses the execve() function to execute the command in the child process.
 Waits for the command to finish executing in the child process using the waitpid() function.
-Repeats steps 1 to 4 until the user enters the "exit" command to quit the program.
+Repeats steps 1 to 4 until the user enters the "CTRL + d" command to quit the program.
 
 .SH COMMANDS
 The shell program supports the following commands:
