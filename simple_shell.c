@@ -1,23 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "main.h"
 
-int main(int argc, char *argv[], char *envp[])
+/**
+ * main - shell program that executes commands
+ * @ac: argument count
+ * @av: argument vector
+ * @envp: environment variables
+ * Return: 0 on success, -1 on failure
+ */
+
+int main(int ac, char *av[1024], char *envp[])
 {
 	size_t len = 0;
 	ssize_t nread;
+	pid_t pid;
 	char *line = NULL, *token;
 	char command[1024];
 	int status;
-	(void)argc;
 
 	while ((nread = getline(&line, &len, stdin)) != -1)
 	{
-		int count = 0;
-		pid_t pid = fork();
+		ac = 0;
+		pid = fork();
 		if (pid == 0)
 		{
 			token = strtok(line, " \n");
@@ -25,34 +28,34 @@ int main(int argc, char *argv[], char *envp[])
 				continue;
 			while (token != NULL)
 			{
-				argv[count] = token;
-				count++;
+				av[ac] = token;
+				ac++;
 				token = strtok(NULL, " \n");
 			}
-			argv[count] = NULL;
+			av[ac] = NULL;
 
-			if (strcmp(argv[0], "ls") == 0)
+			if (strcmp(av[0], "ls") == 0)
 			{
 				strcpy(command, "/bin/ls");
-				argv[0] = command;
+				av[0] = command;
 			}
-			else if (strcmp(argv[0], "pwd") == 0)
+			else if (strcmp(av[0], "pwd") == 0)
 			{
 				strcpy(command, "/bin/pwd");
-				argv[0] = command;
+				av[0] = command;
 			}
-			else if (strcmp(argv[0], "echo") == 0)
+			else if (strcmp(av[0], "echo") == 0)
 			{
 				strcpy(command, "/bin/echo");
-				argv[0] = command;
+				av[0] = command;
 			}
-			else if (strcmp(argv[0], "cat") == 0)
+			else if (strcmp(av[0], "cat") == 0)
 			{
 				strcpy(command, "/bin/cat");
-				argv[0] = command;
+				av[0] = command;
 			}
 
-			execve(argv[0], argv, envp);
+			execve(av[0], av, envp);
 			fprintf(stderr, "Error: command not found\n");
 			exit(EXIT_FAILURE);
 		}
