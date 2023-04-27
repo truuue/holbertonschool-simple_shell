@@ -28,6 +28,21 @@ This shell supports the following basic commands :
 | echo      | display a message                       |
 | cat       | concatenate and display files           |
 
+### Test
+
+If you whant to test it I show you the steps :
+
+```
+/Compile the program/
+user:~/holbertonschool-simple_shell# gcc -Wall -Werror -Wextra -pedantic -std=gnu89 simple_shell.c -o shell
+/Enter in the shell/
+user:~/holbertonschool-simple_shell# ./shell
+/Typing the ls command/
+ls
+/The output/
+AUTHORS  main.h  man_1_simple_shell.1  README.md  shell  simple_shell.c
+```
+
 ### Exit the Shell
 
 To exit the shell, type `ctrl + D`.
