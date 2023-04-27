@@ -28,11 +28,6 @@ This shell supports the following basic commands :
 | echo      | display a message                       |
 | cat       | concatenate and display files           |
 
--   **ls** : list directory contents
--   **pwd** : print name of current/working directory
--   **echo** : display a message
--   **cat** : concatenate and display files
-
 ### Exit the Shell
 
 To exit the shell, type `ctrl + D`.
